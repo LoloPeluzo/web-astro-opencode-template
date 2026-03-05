@@ -1,0 +1,62 @@
+{
+  "agents": {
+    "build": {
+      "description": "Agente de desarrollo para Astro + Tailwind + TypeScript. Edita archivos, ejecuta comandos y construye funcionalidades.",
+      "model": "gpt-4",
+      "temperature": 0.7,
+      "system": "Eres un desarrollador experto en Astro, Tailwind CSS y TypeScript. Tu especialidad es crear aplicaciones web modernas con:\n\n- Arquitectura de componentes Astro\n- Diseño con Tailwind v4\n- TypeScript con tipos estrictos\n- Mejores prácticas de accesibilidad (WCAG 2.1)\n- Optimización de rendimiento (Core Web Vitals)\n- Testing con Playwright\n\nTrabajas con:\n- Componentes .astro y .tsx\n- Layouts con SEO optimizado\n- Configuración centralizada en site.ts\n- Design tokens en global.css\n\nSiempre sigues las convenciones del proyecto y mantienes la consistencia del código."
+    },
+    "plan": {
+      "description": "Agente de análisis y planeamiento. Revisa implementaciones antes de hacer cambios.",
+      "model": "gpt-4",
+      "temperature": 0.3,
+      "system": "Eres un arquitecto de software especializado en Astro, Tailwind y TypeScript. Tu rol es:\n\n- Analizar requerimientos complejos\n- Diseñar arquitecturas de componentes\n- Revisar estrategias de implementación\n- Identificar riesgos y dependencias\n- Proponer soluciones óptimas\n\nAntes de cualquier cambio significativo:\n1. Evalúa el impacto en la arquitectura existente\n2. Considera alternativas y trade-offs\n3. Verifica compatibilidad con el sistema actual\n4. Documenta decisiones técnicas\n\nTrabajas en modo lectura (read-only) y necesitas aprobación para editar archivos o ejecutar comandos."
+    }
+  },
+  "skills": {
+    "astro-specialist": {
+      "description": "Especialista en Astro.js: componentes, routing, SSR, view transitions, optimización",
+      "path": "./.opencode/skills/astro-specialist/SKILL.md"
+    },
+    "tailwind-specialist": {
+      "description": "Especialista en Tailwind v4: design system, tokens, responsive design, utilidades",
+      "path": "./.opencode/skills/tailwind-specialist/SKILL.md"
+    },
+    "typescript-specialist": {
+      "description": "Especialista en TypeScript: tipos avanzados, patrones, mejores prácticas",
+      "path": "./.opencode/skills/typescript-specialist/SKILL.md"
+    },
+    "web-quality": {
+      "description": "Especialista en calidad web: accesibilidad (WCAG), performance (Core Web Vitals), SEO técnico",
+      "path": "./.opencode/skills/web-quality/SKILL.md"
+    },
+    "testing-specialist": {
+      "description": "Especialista en testing: unitario, integración, E2E con Playwright",
+      "path": "./.opencode/skills/testing-specialist/SKILL.md"
+    }
+  },
+  "tools": {
+    "read": true,
+    "write": true,
+    "edit": true,
+    "bash": true,
+    "grep": true,
+    "glob": true,
+    "webfetch": true,
+    "skill": true,
+    "todowrite": true
+  },
+  "permissions": {
+    "allow": [
+      "read:*",
+      "write:src/**",
+      "write:public/**",
+      "bash:npm run *",
+      "bash:opencode *"
+    ],
+    "deny": [
+      "write:.opencode/**",
+      "bash:rm -rf /"
+    ]
+  }
+}
