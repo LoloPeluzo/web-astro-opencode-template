@@ -1,0 +1,257 @@
+# Nombre del Proyecto
+
+Descripción breve del proyecto.
+
+## Agentes Disponibles
+
+Este proyecto usa OpenCode con los siguientes agentes especializados:
+
+| Agente | Uso |
+|--------|-----|
+| **Build** (default) | Desarrollo activo: editar archivos, ejecutar comandos, hacer cambios |
+| **Plan** | Análisis y planeamiento: revisar implementación antes de cambios |
+
+### Cambiar entre Agentes
+
+- Presiona `Tab` para cambiar entre Build y Plan
+- Usa `opencode --agent build` o `opencode --agent plan` al iniciar
+
+## Skills Especializadas
+
+El proyecto incluye skills especializadas para diferentes áreas:
+
+| Skill | Uso | Invocación |
+|-------|-----|-----------|
+| `@astro-specialist` | Astro.js: componentes, routing, SSR | `@astro-specialist ayuda con...` |
+| `@tailwind-specialist` | Tailwind v4: design system, responsive | `@tailwind-specialist necesito...` |
+| `@typescript-specialist` | TypeScript: tipos, patrones | `@typescript-specialist cómo...` |
+| `@web-quality` | Accesibilidad, performance, SEO | `@web-quality audita...` |
+| `@testing-specialist` | Testing: unitario, E2E, Playwright | `@testing-specialist crea tests...` |
+
+## Comandos
+
+### Desarrollo
+
+```bash
+npm run dev      # Servidor de desarrollo (localhost:4321)
+npm run build    # Build de producción
+npm run preview  # Preview del build
+```
+
+### Testing
+
+```bash
+npm run test:unit         # Tests unitarios
+npm run test:e2e          # Tests E2E
+npm run test:e2e:ui       # Tests con UI de Playwright
+npm run test:e2e:debug    # Tests en modo debug
+```
+
+### Calidad
+
+```bash
+npm run lint      # Linting con ESLint
+npm run format    # Formateo con Prettier
+```
+
+### OpenCode
+
+```bash
+opencode              # Iniciar interfaz TUI
+opencode -c           # Continuar sesión anterior
+opencode run "..."    # Ejecutar comando no interactivo
+opencode serve        # Iniciar servidor API
+opencode web          # Interfaz web
+```
+
+## Estructura del Proyecto
+
+```
+src/
+├── components/          # Componentes reutilizables
+│   ├── ui/             # Componentes UI base (Button, Card, etc.)
+│   └── features/       # Componentes de features específicas
+├── config/
+│   └── site.ts         # Configuración centralizada del sitio
+├── layouts/
+│   └── Layout.astro    # Layout base con SEO y meta tags
+├── pages/              # File-based routing
+│   └── index.astro     # Página de inicio
+└── styles/
+    └── global.css      # Design tokens + estilos base + a11y
+```
+
+## Configuración del Sitio
+
+Editar `src/config/site.ts` para actualizar:
+
+```typescript
+export const siteConfig = {
+  // Nombre del sitio
+  name: 'Mi Proyecto',
+  tagline: 'Descripción breve del proyecto',
+  url: 'https://example.com',
+
+  // Contacto
+  email: 'contacto@example.com',
+  phone: '+34 600 000 000',
+
+  // Redes sociales
+  social: {
+    instagram: '',
+    facebook: '',
+    twitter: '',
+    linkedin: '',
+  },
+
+  // Google Analytics
+  analyticsId: 'G-XXXXXXXXXX',
+}
+```
+
+## Convenciones de Código
+
+### Componentes Astro
+
+```astro
+---
+// 1. Imports
+import { siteConfig } from '../config/site'
+
+// 2. Props interface
+interface Props {
+  title: string
+  description?: string
+}
+
+// 3. Destructuring
+const { title, description = '' } = Astro.props
+---
+
+<!-- 4. Template -->
+<section class="component">
+  <h1>{title}</h1>
+  {description && <p>{description}</p>}
+</section>
+
+<!-- 5. Styles (scoped) -->
+<style>
+  .component {
+    /* Scoped styles */
+  }
+</style>
+```
+
+### Estilos con Tailwind
+
+```html
+<!-- Mobile-first approach -->
+<div class="
+  flex
+  flex-col
+  gap-4
+  p-4
+  md:flex-row
+  md:gap-6
+  md:p-6
+">
+  <!-- Content -->
+</div>
+```
+
+### TypeScript
+
+- Usar `strict: true` en tsconfig.json
+- Tipar todas las props de componentes
+- Evitar `any`, usar `unknown` cuando sea necesario
+- Preferir interfaces sobre types para objetos
+
+## Flujo de Trabajo Recomendado
+
+### 1. Iniciar Sesión
+
+```bash
+opencode
+```
+
+### 2. Cambiar a Plan Mode
+
+Presiona `Tab` para cambiar a Plan agent y analizar la implementación.
+
+### 3. Crear Feature
+
+```bash
+# En Plan mode
+@astro-specialist necesito crear una página de contacto con formulario
+```
+
+### 4. Revisar Plan
+
+El agente Plan analizará y propondrá una implementación.
+
+### 5. Implementar
+
+Cambia a Build mode (`Tab`) y ejecuta:
+
+```bash
+@astro-specialist implementa la página de contacto según el plan
+```
+
+### 6. Testing
+
+```bash
+@testing-specialist crea tests E2E para el formulario de contacto
+```
+
+### 7. Auditoría
+
+```bash
+@web-quality audita la accesibilidad y performance de la página
+```
+
+## Atajos de Teclado
+
+| Tecla | Acción |
+|-------|--------|
+| `Tab` | Cambiar entre Build y Plan agents |
+| `@` | Búsqueda fuzzy de archivos |
+| `Ctrl+C` | Cancelar operación actual |
+
+## Slash Commands
+
+| Comando | Descripción |
+|---------|-------------|
+| `/connect` | Configurar API keys de proveedores LLM |
+| `/init` | Inicializar proyecto y crear AGENTS.md |
+| `/undo` | Revertir cambios recientes (apilable) |
+| `/redo` | Restaurar cambios deshechos |
+| `/share` | Crear enlace compartible de conversación |
+
+## Recursos
+
+### Documentación
+
+- [Astro Docs](https://docs.astro.build)
+- [Tailwind CSS](https://tailwindcss.com/docs)
+- [TypeScript](https://www.typescriptlang.org/docs)
+- [OpenCode](https://opencode.dev)
+
+### Herramientas
+
+- [Playwright](https://playwright.dev) - E2E testing
+- [Vitest](https://vitest.dev) - Unit testing
+- [axe DevTools](https://www.deque.com/axe/) - Accesibilidad
+- [PageSpeed Insights](https://pagespeed.web.dev/) - Performance
+
+## Contribución
+
+1. Crear feature branch: `git checkout -b feature/nueva-feature`
+2. Hacer cambios y commit: `git commit -m 'Añade nueva feature'`
+3. Push a la rama: `git push origin feature/nueva-feature`
+4. Abrir Pull Request
+
+## Soporte
+
+Para soporte o preguntas:
+- Email: contacto@example.com
+- GitHub Issues: [enlace-al-repo]/issues
